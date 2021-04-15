@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+  <%= link_to "Slider Test", root_path, class: "navbar-brand" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item ">
+        <%= link_to "Start Test", new_test_path, class: "nav-link" %>
+      </li>
+    </ul>
+      <div class="navbar-nav ml-auto mt-0">
+    <% if current_user %>
+          <%= link_to "<b>Logout</b>".html_safe, destroy_user_session_path, method: :delete, class: "nav-link d-none d-lg-block" %>
+    <% else %>
+          <%= link_to "<b>Login</b>".html_safe, new_user_session_path, {class: "nav-link d-none d-lg-block"} %>
+          <%= link_to "<b>Sign Up</b>".html_safe, new_user_registration_path, {class: "nav-link d-none d-lg-block"} %>
+          <%= link_to "<b>Login</b>".html_safe, new_user_session_path, {class: "nav-link d-lg-none text-center nav-font-mobile margin-left-mobile"} %>
+          <%= link_to "<b>Sign Up</b>".html_safe, new_user_registration_path, {class: "nav-link d-lg-none text-center nav-font-mobile margin-left-mobile"} %>
+    <% end %>
+      </div>
+  </div>
+    
+  </div>
+</nav>

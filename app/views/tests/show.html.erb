@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Test Results</h1>
+  <% @test.slides.each_with_index do |slider, i| %>
+    <div>
+
+      <b>Slide#<%= i + 1 %>: </b> <%= slider.score%>
+    </div>
+  <% end%>
+
+
+</div>

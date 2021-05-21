@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :allocation_tests
   resources :tests
   resources :slides
   devise_for :users

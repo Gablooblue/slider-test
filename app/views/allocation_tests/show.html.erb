@@ -1,0 +1,51 @@
+
+<div class="container mt-3 mb-5">
+  <div class="text-center mb-3">
+
+    <h1>Test Results</h1>
+    <%= current_user.email %>
+  </div>
+  <table class ="table">
+    <thead>
+      <tr>
+        <td>Range</td>
+        <td>Confidence</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @allocation_test.allocation_items.each do |ai| %>
+        <tr>
+          <td>
+            <%= ai.name %>
+          </td>
+          <td>
+            <%= ai.points  %>% 
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <table class ="table">
+    <thead>
+      <tr>
+        <td>Slide #</td>
+        <td>Score</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% current_user.test.slides.each_with_index do |slider, i| %>
+        <tr>
+
+          <td>
+            Slide#<%= i + 1 %> 
+          </td>
+          <td>
+            <%= slider.score %>
+          </td>
+        </tr>
+      <% end%>
+    </tbody>
+  </table>
+</div>

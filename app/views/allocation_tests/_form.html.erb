@@ -1,0 +1,41 @@
+<%= form_with(model: allocation_test) do |form| %>
+  <% if allocation_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(allocation_test.errors.count, "error") %> prohibited this allocation_test from being saved:</h2>
+
+      <ul>
+        <% allocation_test.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <%= form.hidden_field :test_id, value: current_user.test.id %>
+
+    <%= form.hidden_field :user_id, value: current_user.id%>
+    <div class="row">
+      <%= react_component("AllocationTask")  %>
+    </div>
+
+    <%# <div class = "row"> %>
+    <%#   <div class="col-md-1"> %>
+    <%#   </div> %>
+    <%#   <%= form.fields_for :allocation_items do |ai| %1> %>
+    <%#     <div class = "col-md-1"> %>
+    <%#       <div> %>
+    <%#         <%= ai.text_field :name, readonly: true %1> %>
+    <%#       </div> %>
+    <%#       <div> %>
+    <%#         <%= ai.number_field :points %1> %>
+    <%#       </div> %>
+    <%#     </div> %>
+    <%#   <% end %1> %>
+    <%#   <div class="col-md-1"> %>
+    <%#   </div> %>
+    <%# </div> %>
+
+  <%# <div class="actions"> %>
+  <%#   <%= form.submit %1> %>
+  <%# </div> %>
+<% end %>

@@ -14,21 +14,28 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
-    10.times {@test.slides.build}
+    11.times {@test.slides.build}
 
   end
 
   # GET /tests/1/edit
   def edit
+    11.times {@test.slides.build}
   end
 
   # POST /tests or /tests.json
   def create
     @test = Test.new(test_params)
+    redirect_path = nil
+    if current_user.tests.count.between?(1,19)
+      redirect_path = new_test_path
+    else 
+      redirect_path = new_allocation_test_path
+    end
 
     respond_to do |format|
       if @test.save
-        format.html { redirect_to new_allocation_test_path, notice: "Test was successfully created." }
+        format.html { redirect_to redirect_path, notice: "Test was successfully created." }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new, status: :unprocessable_entity }

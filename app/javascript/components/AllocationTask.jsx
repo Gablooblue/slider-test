@@ -26,9 +26,14 @@ export default class AllocationTask extends React.Component {
     componentDidMount() 
     {
         var items = []
-        for(let i = 0; i < 10; i++)
+        var distance = this.getDistance()
+        for(let i = 0; i < 11; i++)
         {
-            let item = {name: i + 1, points: 0}
+            let min,max;
+            min = (i * distance) + 1
+            max = (i+1)  * distance
+            max = max > this.props.slideCount ? this.props.slideCount : max
+            let item = {name: min + "-" + max, points: 0}
             items.push(item)
         }
         this.setState({items: items})
@@ -46,6 +51,10 @@ export default class AllocationTask extends React.Component {
         });
         console.log(balls)
         return balls
+    }
+
+    getDistance = () => {
+        return Math.ceil(this.props.slideCount / 11)
     }
 
     render()

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_16_084626) do
+ActiveRecord::Schema.define(version: 2021_06_12_071436) do
 
   create_table "allocation_items", force: :cascade do |t|
     t.integer "allocation_test_id", null: false
@@ -22,11 +22,9 @@ ActiveRecord::Schema.define(version: 2021_05_16_084626) do
   end
 
   create_table "allocation_tests", force: :cascade do |t|
-    t.integer "test_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["test_id"], name: "index_allocation_tests_on_test_id"
     t.index ["user_id"], name: "index_allocation_tests_on_user_id"
   end
 
@@ -60,7 +58,6 @@ ActiveRecord::Schema.define(version: 2021_05_16_084626) do
   end
 
   add_foreign_key "allocation_items", "allocation_tests"
-  add_foreign_key "allocation_tests", "tests"
   add_foreign_key "allocation_tests", "users"
   add_foreign_key "slides", "tests"
   add_foreign_key "slides", "users"

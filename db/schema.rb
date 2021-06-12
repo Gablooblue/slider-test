@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_071436) do
+ActiveRecord::Schema.define(version: 2021_06_12_125856) do
 
   create_table "allocation_items", force: :cascade do |t|
     t.integer "allocation_test_id", null: false
@@ -25,7 +25,46 @@ ActiveRecord::Schema.define(version: 2021_06_12_071436) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "lottery_won"
     t.index ["user_id"], name: "index_allocation_tests_on_user_id"
+  end
+
+  create_table "choice_tests", force: :cascade do |t|
+    t.integer "test_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["test_id"], name: "index_choice_tests_on_test_id"
+    t.index ["user_id"], name: "index_choice_tests_on_user_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.integer "choice_test_id", null: false
+    t.boolean "answer"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.index ["choice_test_id"], name: "index_choices_on_choice_test_id"
+  end
+
+  create_table "gambles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_gambles_on_user_id"
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer "total"
+    t.integer "choices_accomplished"
+    t.integer "choice_score"
+    t.integer "sliders_accomplished"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "lottery_points"
+    t.index ["user_id"], name: "index_results_on_user_id"
   end
 
   create_table "slides", force: :cascade do |t|
@@ -59,6 +98,11 @@ ActiveRecord::Schema.define(version: 2021_06_12_071436) do
 
   add_foreign_key "allocation_items", "allocation_tests"
   add_foreign_key "allocation_tests", "users"
+  add_foreign_key "choice_tests", "tests"
+  add_foreign_key "choice_tests", "users"
+  add_foreign_key "choices", "choice_tests"
+  add_foreign_key "gambles", "users"
+  add_foreign_key "results", "users"
   add_foreign_key "slides", "tests"
   add_foreign_key "slides", "users"
   add_foreign_key "tests", "users"

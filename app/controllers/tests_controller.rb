@@ -26,15 +26,10 @@ class TestsController < ApplicationController
   # POST /tests or /tests.json
   def create
     @test = Test.new(test_params)
-    redirect_path = nil
-    if current_user.tests.count.between?(1,19)
-      redirect_path = new_test_path
-    else 
-      redirect_path = new_allocation_test_path
-    end
 
     respond_to do |format|
       if @test.save
+        redirect_path = new_choice_test_path
         format.html { redirect_to redirect_path, notice: "Test was successfully created." }
         format.json { render :show, status: :created, location: @test }
       else
@@ -48,7 +43,7 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to @test, notice: "Test was successfully updated." }
+        format.html { redirect_to redirect_path, notice: "Test was successfully updated." }
         format.json { render :show, status: :ok, location: @test }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -64,6 +59,10 @@ class TestsController < ApplicationController
       format.html { redirect_to tests_url, notice: "Test was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def choices 
+    @test = Test.find(params[:test_id])
   end
 
   private

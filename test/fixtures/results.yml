@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  total: 1
+  choices_accomplished: 1
+  choice_score: 1
+  sliders_accomplished: 1
+  user: one
+
+two:
+  total: 1
+  choices_accomplished: 1
+  choice_score: 1
+  sliders_accomplished: 1
+  user: two

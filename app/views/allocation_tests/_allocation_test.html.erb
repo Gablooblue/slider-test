@@ -1,0 +1,27 @@
+<table class="table table-bordered" style="overflow-wrap: break-word; table-layout: fixed; width: 100%;">
+  <thead>
+    <tr>
+      <% allocation_test.allocation_items.each do |ai| %>
+        <td><%= ai.name %></td>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% allocation_test.allocation_items.each do |ai| %>
+        <td class = "text-center"><%= ai.points%></td>
+      <% end %>
+    </tr>
+    <tr style="height: 500px; vertical-align: bottom;">
+      <% allocation_test.allocation_items.each do |ai| %>
+        <td style="vertical-align: bottom;">
+          <div class="align-self-end mb-auto" style="display: flex; flex-flow: row-reverse wrap-reverse; justify-content: flex-end;">
+            <% (ai.points).times do |point| %>
+              <i class="fas fa-circle" aria-hidden="true"></i>
+            <% end %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

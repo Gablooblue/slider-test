@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
+  resources :results
+  resources :choice_tests
+  get 'info', to: "info#show", as: "info_show"
+  get "after_info", to: "info#after_show", as: "info_after_show"
+  get "after_test", to: "info#after_test", as: "after_test_show"
+  get "survey", to: "info#survey", as: "survey"
+  get "result", to: "info#results", as: "info_result"
+  get "instructions", to: "info#instructions", as: "instructions"
+  resources :gambles
   resources :allocation_tests
-  resources :tests
+  resources :tests 
   resources :slides
   devise_for :users
   get 'landing/index'

@@ -2,7 +2,11 @@
   <div class="jumbotron">
     <div class="text-center">
     <h1 class="display-4">Slider Test</h1>
-    <%= link_to "Start Test", new_test_path, class: "btn btn-primary"%>
+    <% if current_user %>
+      <%= link_to "Begin", instructions_path, class: "btn btn-primary"%>
+    <% else %>
+      <%= link_to "Start Test", new_test_path, class: "btn btn-primary"%>
+    <% end %>
       
     </div>
   </div>

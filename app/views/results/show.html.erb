@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Total:</strong>
+  <%= @result.total %>
+</p>
+
+<p>
+  <strong>Choices accomplished:</strong>
+  <%= @result.choices_accomplished %>
+</p>
+
+<p>
+  <strong>Choice score:</strong>
+  <%= @result.choice_score %>
+</p>
+
+<p>
+  <strong>Sliders accomplished:</strong>
+  <%= @result.sliders_accomplished %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @result.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

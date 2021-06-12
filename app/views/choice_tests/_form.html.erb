@@ -1,0 +1,40 @@
+<%= form_with(model: choice_test) do |form| %>
+  <% if choice_test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(choice_test.errors.count, "error") %> prohibited this choice_test from being saved:</h2>
+
+      <ul>
+        <% choice_test.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :test_id, value: current_user.last_test.id %>
+  <%= form.hidden_field :user_id, value: current_user.id%>
+
+  <table class="table table-bordered">
+    <tbody>
+      <%= form.fields_for :choices do |choice_form| %>
+        <%= choice_form.hidden_field :name, value: choice_form.index + 1%>
+        <tr>
+          <td>Do you think you got <%= pluralize(choice_form.index + 1, "slide")  %> correct?</td>
+          <td>
+            <%= choice_form.radio_button :answer, true%>
+            <%= choice_form.label :answer, "Yes", value: true%>
+          </td>
+          <td>
+            <%= choice_form.radio_button :answer, false%>
+            <%= choice_form.label :answer, "No", value: false%>
+          </td>
+        </tr>
+      <% end%>
+
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit "Next Step", class: "btn btn-primary" %>
+  </div>
+<% end %>

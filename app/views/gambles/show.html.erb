@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @gamble.user_id %>
+</p>
+
+<p>
+  <strong>Points:</strong>
+  <%= @gamble.points %>
+</p>
+
+<%= link_to 'Edit', edit_gamble_path(@gamble) %> |
+<%= link_to 'Back', gambles_path %>

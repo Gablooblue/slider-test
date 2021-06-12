@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Results</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Total</th>
+      <th>Choices accomplished</th>
+      <th>Choice score</th>
+      <th>Sliders accomplished</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @results.each do |result| %>
+      <tr>
+        <td><%= result.total %></td>
+        <td><%= result.choices_accomplished %></td>
+        <td><%= result.choice_score %></td>
+        <td><%= result.sliders_accomplished %></td>
+        <td><%= result.user_id %></td>
+        <td><%= link_to 'Show', result %></td>
+        <td><%= link_to 'Edit', edit_result_path(result) %></td>
+        <td><%= link_to 'Destroy', result, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Result', new_result_path %>

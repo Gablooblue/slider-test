@@ -13,7 +13,7 @@
 
     <%= form.hidden_field :user_id, value: current_user.id%>
     <div class="row">
-      <%= react_component("AllocationTask", {slideCount: current_user.slides.count})  %>
+      <%= react_component("AllocationTask", {slideCount: @slide_count})  %>
     </div>
 
     <%# <div class = "row"> %>

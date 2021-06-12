@@ -33,7 +33,7 @@ export default class AllocationTask extends React.Component {
             min = (i * distance) + 1
             max = (i+1)  * distance
             max = max > this.props.slideCount ? this.props.slideCount : max
-            let item = {name: min + "-" + max, points: 0}
+            let item = {name: min + "-" + max, points: 0, index: i}
             items.push(item)
         }
         this.setState({items: items})

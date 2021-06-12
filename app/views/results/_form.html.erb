@@ -1,0 +1,42 @@
+<%= form_with(model: result) do |form| %>
+  <% if result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+        <% result.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :total %>
+    <%= form.number_field :total %>
+  </div>
+
+  <div class="field">
+    <%= form.label :choices_accomplished %>
+    <%= form.number_field :choices_accomplished %>
+  </div>
+
+  <div class="field">
+    <%= form.label :choice_score %>
+    <%= form.number_field :choice_score %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sliders_accomplished %>
+    <%= form.number_field :sliders_accomplished %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

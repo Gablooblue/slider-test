@@ -1,0 +1,40 @@
+<div class="container my-5">
+  <h1>Your Results</h1>
+  Total Score: <%= @total %>
+
+  <h3>Breakdown</h3>
+  <table class = "table table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Correct Slides</td>
+        <td><%= current_user.slide_score %></td>
+      </tr>
+      <tr>
+        <td>Answered Choice Tests</td>
+        <td><%= current_user.choice_tests.count %></td>
+      </tr>
+      <tr>
+        <td>Choice Test Score</td>
+        <td><%= current_user.choice_score %></td>
+      </tr>
+      <tr>
+        <td>Lottery</td>
+        <td><%= current_user.lottery_score %></td>
+      </tr>
+      <tr>
+        <td>Survey</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>Show Up Bonus</td>
+        <td>50</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

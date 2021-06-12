@@ -1,0 +1,20 @@
+<div class="container my-5">
+  <% if current_user.id.even? %>
+  <div class="card">
+    <div class="card-body text-center">
+      <div>You Got</div>
+      <h1> <%= current_user.slide_score %> out of <%= @sliders.count %></h1>
+      <h5>Sliders Correct</h5>
+      
+    </div>
+  </div>
+  <h3 class = "text-center my-3">Your Predicted Allocation</h3>
+  <%= render "allocation_tests/allocation_test", allocation_test: @allocation_tests.first %>
+<% end %>
+  
+  <div class="text-center">
+    <%= link_to "Next Step", info_after_show_path, class: "btn btn-primary" %>
+
+  </div>
+
+</div>

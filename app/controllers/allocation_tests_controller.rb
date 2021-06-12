@@ -13,10 +13,13 @@ class AllocationTestsController < ApplicationController
   # GET /allocation_tests/new
   def new
     @allocation_test = AllocationTest.new
-    10.times {@allocation_test.allocation_items.build}
-    @allocation_test.allocation_items.each_with_index do |ai, i|
-      ai.name = i + 1
+    11.times {@allocation_test.allocation_items.build}
+    if current_user.slides.count <= 220
+      @slide_count = current_user.slides.count
+    else
+      @slide_count = current_user.slides.count - 220
     end
+
 
   end
 
@@ -27,10 +30,16 @@ class AllocationTestsController < ApplicationController
   # POST /allocation_tests or /allocation_tests.json
   def create
     @allocation_test = AllocationTest.new(allocation_test_params)
+    redirect_path = nil
+    if not current_user.allocation_tests.any?
+      redirect_path = new_gamble_path
+    else
+      redirect_path = survey_path
+    end
 
     respond_to do |format|
       if @allocation_test.save
-        format.html { redirect_to @allocation_test, notice: "Allocation test was successfully created." }
+        format.html { redirect_to redirect_path, notice: "Allocation test was successfully created." }
         format.json { render :show, status: :created, location: @allocation_test }
       else
         format.html { render :new, status: :unprocessable_entity }

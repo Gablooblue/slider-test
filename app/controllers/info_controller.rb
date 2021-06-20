@@ -25,9 +25,15 @@ class InfoController < ApplicationController
 
   def users
     @users = User.all 
+    if not current_admin_user
+      redirect_to root_path, alert: "You don't have permission to do that"
+    end
   end
 
   def user
+    if not current_admin_user
+      redirect_to root_path, alert: "You don't have permission to do that"
+    end
     @user = User.find(params[:id])
 
     @total = @user.slide_score +

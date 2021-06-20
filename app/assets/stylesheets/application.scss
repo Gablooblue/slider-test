@@ -14,5 +14,14 @@
   }
 }
 
+.alert-overlay {
+  position: fixed;
+  top: 5px;
+  left: 2%;
+  width: 96%;
+  z-index: 9999;
+}
+
+
 @import "bootstrap";
 

@@ -1,5 +1,20 @@
-<div class="container-fluid mx-4">
-  <h1>Test #<%= current_user.tests.count + 1 %></h1>
+<script>
+  var count = 55;
+  var countdown = setInterval(function(){
+    $("div.countdown").html(count + " seconds remaining");
+    if (count == 0) {
+      clearInterval(countdown);
+      $('form').submit()
+
+    }
+    count--;
+  }, 1000);
+</script>
+<div class="container-fluid my-3 mx-4 text-center">
+  <h1 class "h3 ">Slider Screen #<%= current_user.tests.count + 1 %></h1>
+  <div class = "text-center mb-3" >
+    <div style= "font-size: 1.3em;" class = "countdown"></div>
+  </div>
 
 <%= render 'form', test: @test %>
 

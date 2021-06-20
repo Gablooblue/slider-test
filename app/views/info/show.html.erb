@@ -1,20 +1,36 @@
-<div class="container my-5">
-  <% if current_user.id.even? %>
-  <div class="card">
-    <div class="card-body text-center">
-      <div>You Got</div>
-      <h1> <%= current_user.slide_score %> out of <%= @sliders.count %></h1>
-      <h5>Sliders Correct</h5>
-      
-    </div>
-  </div>
-  <h3 class = "text-center my-3">Your Predicted Allocation</h3>
-  <%= render "allocation_tests/allocation_test", allocation_test: @allocation_tests.first %>
-<% end %>
-  
-  <div class="text-center">
-    <%= link_to "Next Step", info_after_show_path, class: "btn btn-primary" %>
+<script>
+  var count = 120;
+  var countdown = setInterval(function(){
+    $("div.countdown").html(count + " seconds remaining");
+    if (count == 0) {
+      clearInterval(countdown);
+      window.open('./after_info', "_self");
 
+    }
+    count--;
+  }, 1000);
+</script>
+<div class="container my-5">
+  <div class = "text-center mb-3" >
+    <div style= "font-size: 1.3em;" class = "countdown"></div>
+    <small>You will be redirected once the timer ends</small>
   </div>
+  <% if current_user.id.even? %>
+    <div class="card">
+      <div class="card-body text-center">
+        <div>You Got</div>
+        <h1> <%= current_user.slide_score %> out of <%= @sliders.count %></h1>
+        <h5>Sliders Correct</h5>
+
+      </div>
+    </div>
+    <h3 class = "text-center my-3">Your Predicted Allocation</h3>
+    <%= render "allocation_tests/allocation_test", allocation_test: @allocation_tests.first %>
+  <% end %>
+
+  <%# <div class="text-center"> %>
+    <%#   <%= link_to "Next Step", info_after_show_path, class: "btn btn-primary" %1> %>
+
+    <%# </div> %>
 
 </div>

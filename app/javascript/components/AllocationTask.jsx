@@ -29,11 +29,22 @@ export default class AllocationTask extends React.Component {
         var distance = this.getDistance()
         for(let i = 0; i < 11; i++)
         {
-            let min,max;
+            let min,max, name;
             min = (i * distance) + 1
+            min = min == 1 ? 0 : min
             max = (i+1)  * distance
             max = max > this.props.slideCount ? this.props.slideCount : max
-            let item = {name: min + "-" + max, points: 0, index: i}
+            if(min != max)
+            {
+                name = min + "-" + max
+            }
+            else
+            {
+                name = min
+            }
+            
+            
+            let item = {name: name, points: 0, index: i}
             items.push(item)
         }
         this.setState({items: items})

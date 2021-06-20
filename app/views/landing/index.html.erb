@@ -5,7 +5,7 @@
     <% if current_user %>
       <%= link_to "Begin", instructions_path, class: "btn btn-primary"%>
     <% else %>
-      <%= link_to "Start Test", new_test_path, class: "btn btn-primary"%>
+      <%= link_to "Start Test", new_user_registration_path, class: "btn btn-primary"%>
     <% end %>
       
     </div>

@@ -14,21 +14,36 @@
   <%= form.hidden_field :test_id, value: current_user.last_test.id %>
   <%= form.hidden_field :user_id, value: current_user.id%>
 
+
   <table class="table table-bordered">
     <tbody>
       <%= form.fields_for :choices do |choice_form| %>
         <%= choice_form.hidden_field :name, value: choice_form.index + 1%>
         <tr>
-          <td>Do you think you got <%= pluralize(choice_form.index + 1, "slide")  %> correct?</td>
-          <td>
-            <%= choice_form.radio_button :answer, true%>
-            <%= choice_form.label :answer, "Yes", value: true%>
+          <td class = "text-center">
+            <div> 
+              <%= choice_form.radio_button :answer, true, required: true%>
+            </div>
+            <%= choice_form.label :answer, value: true do %>
+              I got atleast <b><%= pluralize(choice_form.index + 1, 'slider') %></b> correct
+              <div>
+                <small class = "form-text">3 points if correct, 0 if wrong</small>
+              </div>
+            <% end %>
           </td>
-          <td>
-            <%= choice_form.radio_button :answer, false%>
-            <%= choice_form.label :answer, "No", value: false%>
+          <td class = "text-center">
+            <div>
+              <%= choice_form.radio_button :answer, false, required: true%>
+            </div>
+            <%= choice_form.label :answer, value: false do%>
+            Flip a Coin
+            <div>
+              <small class = "form-text"> 50/50 chance of getting 3 points, or 0 points </small>
+            </div>
+          <% end %>
           </td>
         </tr>
+        <tr><td class = "border-white"><td></tr>
       <% end%>
 
     </tbody>

@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_12_125856) do
+ActiveRecord::Schema.define(version: 2021_06_20_084020) do
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
 
   create_table "allocation_items", force: :cascade do |t|
     t.integer "allocation_test_id", null: false
@@ -44,6 +56,8 @@ ActiveRecord::Schema.define(version: 2021_06_12_125856) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
+    t.boolean "rewarded", default: false
+    t.boolean "lucky", default: false
     t.index ["choice_test_id"], name: "index_choices_on_choice_test_id"
   end
 

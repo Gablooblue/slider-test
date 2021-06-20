@@ -1,0 +1,161 @@
+
+<div class="container my-5">
+  <%= link_to "< Back", users_path %>
+  <h3 class = "mt-4">Results for <%= @user.email %></h3>
+  <div>
+  Total Score: <%= @total %>
+</div>
+<div> Started Test At: <%= friendly_datetime @user.created_at %>
+</div>
+<div>Finished Test At:  <%= friendly_datetime @user.finished_test_at %><div>
+
+  <h3>Breakdown</h3>
+  <table class = "table table-bordered">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Correct Slides</td>
+        <td><%= @user.slide_score %></td>
+      </tr>
+      <tr>
+        <td>Answered Choice Tests</td>
+        <td><%= @user.choice_tests.count %></td>
+      </tr>
+      <tr>
+        <td>Choice Test Score</td>
+        <td><%= @user.choice_score %></td>
+      </tr>
+      <tr>
+        <td>Lottery</td>
+        <td><%= @user.lottery_score %></td>
+      </tr>
+      <tr>
+        <td>Survey</td>
+        <td>10</td>
+      </tr>
+      <tr>
+        <td>Show Up Bonus</td>
+        <td>50</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="my-4">
+  <h3>Sliders</h3>
+  <div class = "my-3"> <%= @user.slide_score %> out of <%= @user.slides.count %> Sliders Correct</div>
+  <a class="btn btn-primary" data-toggle="collapse" href="#slidersCollapse" role="button" aria-expanded="false" aria-controls="slidersCollapse">
+    Toggle View All Sliders
+  </a>
+  <div class="collapse" id="slidersCollapse">
+    <% @user.tests.each_with_index do |test, j| %>
+      <h5>Slide Test # <%= j + 1 %></h5>
+
+    <table class ="table">
+      <thead>
+        <tr>
+          <td>Slide #</td>
+          <td>Score</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% test.slides.each_with_index do |slider, i| %>
+          <tr>
+
+            <td>
+              Slide#<%= i + 1 %> 
+            </td>
+            <td>
+              <%= slider.score %>
+            </td>
+          </tr>
+        <% end%>
+      </tbody>
+    </table>
+  <% end %>
+  </div>
+
+
+
+  </div>
+
+  <h3>Choice Tests</h3>
+
+  <div>Answered Choice Tests: 
+  <%= @user.choice_tests.count %></div>
+  <div>Choice Test Score: 
+  <%= @user.choice_score %></div>
+
+  <a class="btn btn-primary" data-toggle="collapse" href="#choicesCollapse" role="button" aria-expanded="false" aria-controls="choicesCollapse">
+    Toggle View All Choice Tests 
+  </a>
+
+  <div class="collapse" id="choicesCollapse">
+  <% @user.choice_tests.each_with_index do |choice_test, i| %>
+    <h5>Choice Test #<%= i +1 %> </h5> 
+    <table class ="table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Answer</td>
+          <td>Possible Points</td>
+          <td>Rewarded?</td>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <% choice_test.choices.each_with_index do |choice, j | %>
+          <tr>
+            <td>
+              <%= choice.name %> slider 
+            </td>
+            <td><%= choice.answer ? "Choice B" : "Choice A" %></td> 
+            <td><%= choice.possible_points %></td>
+            <td class = "text-success"><%= choice.rewarded ? "YES" : "" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end%>
+  </div>
+
+  <div class="my-4">
+  <h3>Ball Allocation Tasks</h3>
+  <div class = "my-3"><%= @user.allocation_tests.where(lottery_won: true).count %> out of <%= pluralize(@user.allocation_tests.count, "lottery") %> won</div>
+
+  <a class="btn btn-primary" data-toggle="collapse" href="#allocationCollapse" role="button" aria-expanded="false" aria-controls="allocationCollapse">
+    Toggle View All Ball Allocation Tests
+  </a>
+
+  <div class="collapse" id="allocationCollapse">
+  <% @user.allocation_tests.each do |allocation_test| %>
+    <div class = "mb-4">
+    <%= render "allocation_tests/allocation_test", allocation_test: allocation_test %>
+    <b>Won Lottery?:</b> <%= allocation_test.lottery_won %>
+
+    </div>
+  <% end %>
+  </div>
+
+    
+  </div>
+
+  <% if @user.gamble.present? %>
+    <div class="my-4">
+      <h3>Willingness To Pay</h3>
+      They were willing to pay <b><%= @user.gamble.points %>%</b> of their points in exchange for information
+
+    </div>
+  <% end %>
+
+  <h3>Did they see their results?</h3>
+  <div><%= @user.id.even? ? "Yes" : "No" %></div>
+
+</div>

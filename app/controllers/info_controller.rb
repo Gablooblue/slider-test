@@ -22,4 +22,19 @@ class InfoController < ApplicationController
 
   def instructions
   end
+
+  def users
+    @users = User.all 
+  end
+
+  def user
+    @user = User.find(params[:id])
+
+    @total = @user.slide_score +
+      @user.choice_tests.count +
+      @user.choice_score + 
+      @user.lottery_score +
+      10 + # Survey
+      50 #Show Up Fee 
+  end
 end

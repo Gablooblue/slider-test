@@ -1,0 +1,24 @@
+<div class="container my-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Email</th>
+        <th scope="col">Started </th>
+        <th scope="col">Finished</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= friendly_datetime user.created_at %></td>
+          <td><%= friendly_datetime user.finished_test_at %></td>
+          <td><%= link_to "View Results", user_result_path(user.id) %></td>
+
+        </tr>
+
+      <% end %>
+    </tbody>
+
+</div>

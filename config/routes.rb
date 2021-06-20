@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :admin_users
   resources :results
   resources :choice_tests
   get 'info', to: "info#show", as: "info_show"
@@ -16,5 +17,7 @@ Rails.application.routes.draw do
       }
   get 'landing/index'
   root "landing#index"
+  get "users", to: "info#users", as: "users"
+  get "user_results/:id", to: "info#user", as: "user_result"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

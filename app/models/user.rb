@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :slides, through: :tests
   has_many :allocation_tests
   has_many :choice_tests
+  has_one :gamble
 
   def slide_score
     points = 0
@@ -43,13 +44,15 @@ class User < ApplicationRecord
 
     self.tests.each do |test|
       test.choice_test.choices.each do |choice|
-        if choice.answer
-          if choice.name.to_i <= test.score
-            score += 3
-          end
-        else
-          if rand.round == 0 
-            score +=3
+        if choice.rewarded
+          if choice.answer
+            if choice.name.to_i <= test.score
+              score += 3
+            end
+          else
+            if choice.lucky
+              score +=3
+            end
           end
         end
       end
@@ -67,6 +70,19 @@ class User < ApplicationRecord
       end
     end
     points
+  end
+
+  def finished_test_at
+    if self.slides.count > 220
+      self.allocation_tests.order("created_at DESC").first.created_at
+    else
+      if gamble.present?
+      self.gamble.created_at
+      else
+        ""
+      end
+    end
+
   end
 
 end

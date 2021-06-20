@@ -72,6 +72,6 @@ class ChoiceTestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def choice_test_params
-      params.require(:choice_test).permit(:test_id, :user_id, choice_attributes: [:id, :choice_test_id, :answer, :name])
+      params.require(:choice_test).permit(:test_id, :user_id, choices_attributes: [:id, :choice_test_id, :answer, :name])
     end
 end

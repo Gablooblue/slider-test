@@ -39,7 +39,7 @@ class AllocationTestsController < ApplicationController
 
     respond_to do |format|
       if @allocation_test.save
-        format.html { redirect_to redirect_path, notice: "Allocation test was successfully created." }
+        format.html { redirect_to redirect_path}
         format.json { render :show, status: :created, location: @allocation_test }
       else
         format.html { render :new, status: :unprocessable_entity }

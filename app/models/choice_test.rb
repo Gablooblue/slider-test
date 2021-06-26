@@ -8,8 +8,7 @@ class ChoiceTest < ApplicationRecord
   after_save :pick_rewarded
 
   def pick_rewarded
-    r = rand(11)
-    puts r
+    r = rand(1..11)
     choice = self.choices.first(r).last
     choice.rewarded = true
     choice.save

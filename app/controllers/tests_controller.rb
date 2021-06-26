@@ -30,7 +30,7 @@ class TestsController < ApplicationController
     respond_to do |format|
       if @test.save
         redirect_path = new_choice_test_path
-        format.html { redirect_to redirect_path, notice: "Test was successfully created." }
+        format.html { redirect_to redirect_path}
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new, status: :unprocessable_entity }

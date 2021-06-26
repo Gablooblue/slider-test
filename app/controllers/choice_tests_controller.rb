@@ -33,7 +33,7 @@ class ChoiceTestsController < ApplicationController
 
     respond_to do |format|
       if @choice_test.save
-        format.html { redirect_to redirect_path, notice: "Choice test was successfully created." }
+        format.html { redirect_to redirect_path }
         format.json { render :show, status: :created, location: @choice_test }
       else
         format.html { render :new, status: :unprocessable_entity }

@@ -43,15 +43,17 @@ class User < ApplicationRecord
     score = 0
 
     self.tests.each do |test|
-      test.choice_test.choices.each do |choice|
-        if choice.rewarded
-          if choice.answer
-            if choice.name.to_i <= test.score
-              score += 3
-            end
-          else
-            if choice.lucky
-              score +=3
+      if test.choice_test.present?
+        test.choice_test.choices.each do |choice|
+          if choice.rewarded
+            if choice.answer
+              if choice.name.to_i <= test.score
+                score += 3
+              end
+            else
+              if choice.lucky
+                score +=3
+              end
             end
           end
         end
@@ -65,7 +67,7 @@ class User < ApplicationRecord
   def lottery_score
     points = 0
     self.allocation_tests.each do |at|
-      if at.lottery_won 
+      if at.lottery_won  
         points += 50
       end
     end

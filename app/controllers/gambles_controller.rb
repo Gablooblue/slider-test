@@ -25,7 +25,7 @@ class GamblesController < ApplicationController
 
     respond_to do |format|
       if @gamble.save
-        format.html { redirect_to info_show_path, notice: "Gamble was successfully created." }
+        format.html { redirect_to info_show_path }
         format.json { render :show, status: :created, location: @gamble }
       else
         format.html { render :new, status: :unprocessable_entity }

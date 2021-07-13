@@ -23,6 +23,9 @@ class InfoController < ApplicationController
   def instructions
   end
 
+  def slide_instructions
+  end
+
   def users
     @users = User.all 
     if not current_admin_user

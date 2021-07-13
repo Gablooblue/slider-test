@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "survey", to: "info#survey", as: "survey"
   get "result", to: "info#results", as: "info_result"
   get "instructions", to: "info#instructions", as: "instructions"
+  get "slide_instructions", to: "info#slide_instructions", as: "slide_instructions"
   resources :gambles
   resources :allocation_tests
   resources :tests 

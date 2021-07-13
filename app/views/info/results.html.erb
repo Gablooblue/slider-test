@@ -2,6 +2,8 @@
   <b>Your Results</b>
   <h1 class = "mt-2 mb-3">Total Score: <%= @total %></h1>
 
+  <div class = "mb-5">Please input your payment details in this form to collect your payment <%= link_to "https://forms.gle/fvmkLDTYdLT3FtRW8 ", "https://forms.gle/fvmkLDTYdLT3FtRW8", target: "_blank" %></div>
+
   <h3>Breakdown</h3>
   <table class = "table table-bordered">
     <thead>
@@ -12,12 +14,8 @@
     </thead>
     <tbody>
       <tr>
-        <td>Correct Slides</td>
+        <td>Correct Sliders</td>
         <td><%= current_user.slide_score %></td>
-      </tr>
-      <tr>
-        <td>Answered Choice Tests</td>
-        <td><%= current_user.choice_tests.count %></td>
       </tr>
       <tr>
         <td>Choice Test Score</td>

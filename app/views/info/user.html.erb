@@ -23,10 +23,6 @@
         <td><%= @user.slide_score %></td>
       </tr>
       <tr>
-        <td>Answered Choice Tests</td>
-        <td><%= @user.choice_tests.count %></td>
-      </tr>
-      <tr>
         <td>Choice Test Score</td>
         <td><%= @user.choice_score %></td>
       </tr>
@@ -54,6 +50,12 @@
   <div class="collapse" id="slidersCollapse">
     <% @user.tests.each_with_index do |test, j| %>
       <h5>Slide Test # <%= j + 1 %></h5>
+      <div>
+        
+        <b>
+          Correct Slides:
+</b>
+          <%= test.score %></div>
 
     <table class ="table">
       <thead>

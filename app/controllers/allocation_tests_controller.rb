@@ -14,10 +14,10 @@ class AllocationTestsController < ApplicationController
   def new
     @allocation_test = AllocationTest.new
     11.times {@allocation_test.allocation_items.build}
-    if current_user.slides.count <= 220
+    if current_user.slides.count <= (base_slides_count)
       @slide_count = current_user.slides.count
     else
-      @slide_count = current_user.slides.count - 220
+      @slide_count = current_user.slides.count - base_slides_count
     end
 
 

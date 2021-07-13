@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :choice_tests
   has_one :gamble
 
+  def base_slides_count
+    11 * 15 #Number of Slides * Number of Screens
+  end
+
   def slide_score
     points = 0
     self.slides.each do |slide|
@@ -22,8 +26,8 @@ class User < ApplicationRecord
   def current_slide_score
     points = 0
     slides_count = self.slides.count
-    if slides_count > 220
-      slides = self.slides.order("created_at DESC").first(slides_count - 220)
+    if slides_count > base_slides_count
+      slides = self.slides.order("created_at DESC").first(slides_count - base_slides_count)
     else
       slides = self.slides
     end
@@ -75,7 +79,7 @@ class User < ApplicationRecord
   end
 
   def finished_test_at
-    if self.slides.count > 220
+    if self.slides.count > base_slides_count
       self.allocation_tests.order("created_at DESC").first.created_at
     else
       if gamble.present?

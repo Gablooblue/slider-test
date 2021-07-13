@@ -23,9 +23,9 @@ class ChoiceTestsController < ApplicationController
   # POST /choice_tests or /choice_tests.json
   def create
     @choice_test = ChoiceTest.new(choice_test_params)
-    if current_user.tests.count.between?(0,19)
+    if current_user.tests.count.between?(0,number_of_screens - 1)
       redirect_path = new_test_path
-    elsif current_user.tests.count == 20
+    elsif current_user.tests.count == number_of_screens
       redirect_path = new_allocation_test_path
     else
       redirect_path = after_test_show_path

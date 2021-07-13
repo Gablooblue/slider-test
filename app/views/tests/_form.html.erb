@@ -15,7 +15,7 @@
   <%= form.fields_for :slides do |slide_form| %>
     <div class = "col-md-4 slider">
     <div class = "form-group mx-5 my-5 "> 
-      <%= slide_form.range_field :score, class: 'w-100', value: 0, step: 0.25%>
+      <%= slide_form.range_field :score, class: 'w-100', value: rand(1..100), step: 0.25, style: "margin-left: #{rand(0..100).to_s + "px"};"%>
       <%= slide_form.hidden_field :user_id, value: current_user.id%>
     </div>
 </div>

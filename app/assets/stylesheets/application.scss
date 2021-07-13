@@ -1,19 +1,4 @@
 
-.slider
-{
-    width: 100%
-
-}
-    
-@for $i from 1 through 10
-{
-  .slider:nth-child(#{$i})
-  {
-    margin-left: random(100) + px;
-
-  }
-}
-
 .alert-overlay {
   position: fixed;
   top: 5px;

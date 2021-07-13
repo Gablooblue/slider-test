@@ -3,7 +3,7 @@
   <div class="text-center">
     <h1 class = "mt-3">Do you want to do more sliders?</h1>
     <div style="font-size: 1.3em;">
-      You've currently answered <strong><%= pluralize((current_user.slides.count - 220) / 11, "additional slider screen") %></strong>
+      You've currently answered <strong><%= pluralize((current_user.slides.count - current_user.base_slides_count) / 11, "additional slider screen") %></strong>
     </div>
     <div class="text-center my-5">
       <%= link_to "Do more", new_test_path, class: "btn btn-lg btn-secondary mr-4" %>

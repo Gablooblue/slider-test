@@ -5,12 +5,12 @@ class ChoiceTest < ApplicationRecord
 
   accepts_nested_attributes_for :choices
 
-  after_save :pick_rewarded
+  # after_save :pick_rewarded
 
-  def pick_rewarded
-    r = rand(1..11)
-    choice = self.choices.first(r).last
-    choice.rewarded = true
-    choice.save
-  end
+  # def pick_rewarded
+  #   r = rand(1..11)
+  #   choice = self.choices.first(r).last
+  #   choice.rewarded = true
+  #   choice.save
+  # end
 end

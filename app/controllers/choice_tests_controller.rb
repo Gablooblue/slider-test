@@ -13,7 +13,7 @@ class ChoiceTestsController < ApplicationController
   # GET /choice_tests/new
   def new
     @choice_test = ChoiceTest.new
-    11.times {@choice_test.choices.build}
+    #11.times {@choice_test.choices.build}
   end
 
   # GET /choice_tests/1/edit
@@ -72,6 +72,6 @@ class ChoiceTestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def choice_test_params
-      params.require(:choice_test).permit(:test_id, :user_id, choices_attributes: [:id, :choice_test_id, :answer, :name])
+      params.require(:choice_test).permit(:test_id, :user_id, :gamble, :correct_slides, choices_attributes: [:id, :choice_test_id, :answer, :name])
     end
 end

@@ -88,10 +88,10 @@
 
   <h3>Choice Tests</h3>
 
-  <div>Answered Choice Tests: 
-  <%= @user.choice_tests.count %></div>
-  <div>Choice Test Score: 
-  <%= @user.choice_score %></div>
+  <%# <div>Answered Choice Tests: %> 
+  <%# <%= @user.choice_tests.count %1></div> %>
+  <%# <div>Choice Test Score: %> 
+  <%# <%= @user.choice_score %1></div> %>
 
   <a class="btn btn-primary" data-toggle="collapse" href="#choicesCollapse" role="button" aria-expanded="false" aria-controls="choicesCollapse">
     Toggle View All Choice Tests 
@@ -99,31 +99,37 @@
 
   <div class="collapse" id="choicesCollapse">
   <% @user.choice_tests.each_with_index do |choice_test, i| %>
-    <h5>Choice Test #<%= i +1 %> </h5> 
-    <table class ="table">
-      <thead>
-        <tr>
-          <td>Name</td>
-          <td>Answer</td>
-          <td>Possible Points</td>
-          <td>Rewarded?</td>
-        </tr>
-      </thead>
+    <div class = "my-2">
+      <h5>Choice Test #<%= i +1 %> </h5> 
+      <div><b>1. How many sliders do you think you got correctly in the previous screen (out of 11)</b></div>
+      <div><%= choice_test.correct_slides %></div>
+      <div><b>2. Hypotheteically, how many points would you be willing to bet that you got this many sliders correctly? (From 1-10 points)</b></div>
+      <div><%= choice_test.gamble%></div>
+    </div>
+    <%# <table class ="table"> %>
+    <%#   <thead> %>
+    <%#     <tr> %>
+    <%#       <td>Name</td> %>
+    <%#       <td>Answer</td> %>
+    <%#       <td>Possible Points</td> %>
+    <%#       <td>Rewarded?</td> %>
+    <%#     </tr> %>
+    <%#   </thead> %>
 
-      <tbody>
+    <%#   <tbody> %>
 
-        <% choice_test.choices.each_with_index do |choice, j | %>
-          <tr>
-            <td>
-              <%= choice.name %> slider 
-            </td>
-            <td><%= choice.answer ? "Choice B" : "Choice A" %></td> 
-            <td><%= choice.possible_points %></td>
-            <td class = "text-success"><%= choice.rewarded ? "YES" : "" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%#     <% choice_test.choices.each_with_index do |choice, j | %1> %>
+    <%#       <tr> %>
+    <%#         <td> %>
+    <%#           <%= choice.name %1> slider %> 
+    <%#         </td> %>
+    <%#         <td><%= choice.answer ? "Choice B" : "Choice A" %1></td> %> 
+    <%#         <td><%= choice.possible_points %1></td> %>
+    <%#         <td class = "text-success"><%= choice.rewarded ? "YES" : "" %1></td> %>
+    <%#       </tr> %>
+    <%#     <% end %1> %>
+    <%#   </tbody> %>
+    <%# </table> %>
 
   <% end%>
   </div>

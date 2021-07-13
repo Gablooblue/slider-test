@@ -12,7 +12,6 @@ class InfoController < ApplicationController
 
   def results
     @total = current_user.slide_score +
-      current_user.choice_score + 
       current_user.lottery_score +
       10 + # Survey
       50 #Show Up Fee 
@@ -39,9 +38,9 @@ class InfoController < ApplicationController
     @user = User.find(params[:id])
 
     @total = @user.slide_score +
-      @user.choice_score + 
       @user.lottery_score +
       10 + # Survey
       50 #Show Up Fee 
+
   end
 end

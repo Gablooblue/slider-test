@@ -14,7 +14,21 @@
   <%= form.hidden_field :test_id, value: current_user.last_test.id %>
   <%= form.hidden_field :user_id, value: current_user.id%>
 
+  <div class="form-group">
+    <%= form.label :correct_slides, "How many sliders do you think you got correctly in the previous screen (out of 11)" %>
+    <%= form.number_field :correct_slides, min: 0, max: 11, class: "form-control", required: true %>
+    
+  </div>
 
+  <div class="form-group">
+    <%= form.label :gamble, "Hypothetically, how many points would you be willing to bet that you got this many sliders correctly? (From 1-10 points)" %>
+    <%= form.number_field :gamble, min: 0, max: 10, class: "form-control", required: true %>
+    
+  </div>
+
+  
+
+  <% if false %>
   <table class="table table-bordered">
     <tbody>
       <%= form.fields_for :choices do |choice_form| %>
@@ -36,7 +50,7 @@
               <%= choice_form.radio_button :answer, false, required: true%>
             </div>
             <%= choice_form.label :answer, value: false do%>
-            Flip a Coin
+  <%#           Flip a Coin%>
             <div>
               <small class = "form-text"> 50/50 chance of getting 3 points, or 0 points </small>
             </div>
@@ -48,6 +62,7 @@
 
     </tbody>
   </table>
+<% end %>
 
   <div class="actions">
     <%= form.submit "Next Step", class: "btn btn-primary" %>

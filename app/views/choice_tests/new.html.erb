@@ -1,10 +1,11 @@
 <div class="container my-5">
   <div class="text-center">
-  <h1 class = "h3 mb-2">Choice List for Slider Screen #<%= current_user.tests.count%></h1>
+  <h1 class = "h3 mb-2">Questions for Slider Screen #<%= current_user.tests.count%></h1>
     
   </div>
 
-  <div class = "text-center mb-4 mt-3" style="font-size: 1.1em">Please choose which alternative you prefer at each row (Only one of your answers here will be selected for possible rewards)</div>
+<%#   <div class = "text-center mb-4 mt-3" style="font-size: 1.1em">Please choose which alternative you prefer at each row (Only one of your answers here will be selected for possible rewards)</div> %>
+  <div class = "text-center mb-4 mt-3" style="font-size: 1.1em">Please answer the following questions</div>
 
   <%= render 'form', choice_test: @choice_test %>
 

@@ -72,7 +72,10 @@ export default class AllocationTask extends React.Component {
     {
         return(
             <div>
-                Balls left:   { this.state.items != [] ? 100 - this.totalPoints(this.state.items) : null }
+                <div className="text-center my-3">
+                    <b>Balls left:</b>   { this.state.items != [] ? 100 - this.totalPoints(this.state.items) : null }
+                
+                </div>
                 <table className = "table table-bordered" style={{overflowWrap: "break-word",tableLayout: "fixed", width: "100%"}}>
                     <thead>
                         <tr>
@@ -112,7 +115,10 @@ export default class AllocationTask extends React.Component {
                         </tr>
                     </tbody>
                 </table>
+                <div className="text-center">
                 <input type= "submit" disabled = {this.totalPoints(this.state.items) < 100} className = "btn btn-primary" />
+                
+                </div>
             </div>
         )
     }

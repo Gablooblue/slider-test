@@ -13,7 +13,6 @@ class InfoController < ApplicationController
   def results
     @total = current_user.slide_score +
       current_user.lottery_score +
-      10 + # Survey
       50 #Show Up Fee 
 
   end
@@ -39,7 +38,6 @@ class InfoController < ApplicationController
 
     @total = @user.slide_score +
       @user.lottery_score +
-      10 + # Survey
       50 #Show Up Fee 
 
   end

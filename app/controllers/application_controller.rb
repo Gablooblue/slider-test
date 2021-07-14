@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   end
 
   def number_of_screens
-    return 15
+    return 10
   end
 
   def base_slides_count

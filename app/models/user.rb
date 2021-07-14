@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_one :gamble
 
   def base_slides_count
-    11 * 15 #Number of Slides * Number of Screens
+    11 * 10 #Number of Slides * Number of Screens
   end
 
   def slide_score
@@ -72,7 +72,7 @@ class User < ApplicationRecord
     points = 0
     self.allocation_tests.each do |at|
       if at.lottery_won  
-        points += 50
+        points += 20
       end
     end
     points

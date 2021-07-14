@@ -1,6 +1,9 @@
 <div class="container my-5">
   <div class="text-center">
   <h1 class = "h3 mb-2">Ball Allocation Task</h1>
+  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#instructionsModal">
+    View Instructions
+  </button>
     
   </div>
   <% if current_user.allocation_tests.empty? %>
@@ -10,6 +13,7 @@
               $('#instructionsModal').modal('show');
             });
     </script>
+  <% end %>
 <!-- Modal -->
 <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel" >
   <div class="modal-dialog" role="document">
@@ -25,20 +29,27 @@
         Congratulations on passing the first stage!
         </p>
         <p>
-          You have 100 balls to allocate to these bins. Each bin represents an interval for sliders answered correctly. Each ball represents 1 percent of belief that the total number of correct sliders answered in all screens in the previous stage lies within that interval.
+          This next stage is to measure your confidence of your performance in Stage 1
         </p>
         <p>
-          Your task is to allocate the balls according to your belief about how many sliders you got correctly in Stage 1.
+          You have 100 balls which represent 100 percent of your confidence
         </p>
         <p>
-          Note: The more balls you place in the bin that contains your actual number of correct sliders, the greater your chance is of winning bonus points, so guess wisely!
+          Your task is to allocate the balls to each of these bins
+        </p>
+        <p>
+          Let the number of balls represent your percentage of confidence that you got that number of sliders correct
         </p>
         <div>
           <div>This is the ball allocation task</div>
           <%= image_tag "ball-allocation.png", class: "img-fluid" %>
-          <div>
-            In the example above, our participant placed 25 balls in the bin with the interval of 0-15. This means that he is 25% sure that he got somewhere between 0 to 15 sliders correctly out of all the sliders he answered in Stage 1.
-          </div>
+          <p>
+            In the example above, our participant placed 22 balls in the bin with the interval of 91-105. This means that he is 22% sure that he got somewhere between 91 to 105 sliders correctly out of all the sliders he answered in Stage 1.
+          </p>
+
+          <p><b>You don't need to fill all the bins, but all 100 balls must be allocated</b></p>
+
+          <p>Note: The more balls you place in the bin that contains your actual number of correct sliders, the greater your chance is of winning bonus points, so guess wisely!</p>
           
         </div>
       </div>
@@ -48,7 +59,6 @@
     </div>
   </div>
 </div>
-  <% end %>
 
   <%= render 'form', allocation_test: @allocation_test %>
 

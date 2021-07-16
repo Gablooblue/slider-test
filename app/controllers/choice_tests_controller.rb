@@ -28,7 +28,11 @@ class ChoiceTestsController < ApplicationController
     elsif current_user.tests.count == number_of_screens
       redirect_path = new_allocation_test_path
     else
-      redirect_path = after_test_show_path
+      if current_user.tests.count.between?(number_of_screens - 1, (number_of_screens * 2) -1)
+        redirect_path = after_test_show_path
+      else
+        redirect_path = new_allocation_test_path
+      end
     end
 
     respond_to do |format|
